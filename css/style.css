@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body {
+    background-image: linear-gradient(#3200ff, #00ff7e);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 16px;
+    transition: all 0.3s ease-in;
+  }
+  @media (max-width: 512px) {
+    body {
+      padding: 32px;
+      transition: all 0.3s ease-in;
+    }
+  }
+  @media (max-width: 360px) {
+    body {
+      padding: 16px;
+      transition: all 0.3s ease-in;
+    }
+  }
+  
+  h1 {
+    text-align: center;
+    color: #000;
+    margin: 0 0 16px 0;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+  
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 64px;
+    box-shadow: 2px 2px 96px #111;
+    border-radius: 8px;
+    transition: all 0.3s ease-in;
+  }
+  @media (max-width: 512px) {
+    .container {
+      padding: 32px;
+      transition: all 0.3s ease-in;
+    }
+  }
+  @media (max-width: 360px) {
+    .container {
+      padding: 16px;
+      transition: all 0.3s ease-in;
+    }
+  }
+  
+  label {
+    display: inline-block;
+    width: 25%;
+    min-width: 128px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input, select {
+    display: inline-block;
+    background-color: #fff;
+    color: #888;
+    border: 2px solid #888;
+    border-radius: 2px;
+    height: 56px;
+    width: 100%;
+    font-size: 24px;
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+  input:focus, select:focus {
+    background-color: #fff;
+    color: #3200ff;
+    border-color: #3200ff;
+    outline: 0;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .payment {
+    color: #000;
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease-in;
+  }
+  @media (max-width: 512px) {
+    .payment {
+      font-size: 40px;
+      transition: all 0.3s ease-in;
+    }
+  }
+  @media (max-width: 400px) {
+    .payment {
+      font-size: 32px;
+      transition: all 0.3s ease-in;
+    }
+  }
+  
+  @media (max-height: 750px) {
+    body {
+      height: 100%;
+    }
+  }
+  
+  
+  

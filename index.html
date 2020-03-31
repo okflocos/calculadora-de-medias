@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		body {
+			background-image: -webkit-gradient(linear, left top, left bottom, from(#7c1180), to(#07b5cc));
+			background-image: linear-gradient(#ff009d, #00ffdd);
+			height: 100vh;
+			display: -webkit-box;
+			display: flex;
+			-webkit-box-align: center;
+			align-items: center;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			flex-direction: column;
+			-webkit-box-pack: center;
+			justify-content: center;
+			padding-top: 16px;
+			-webkit-transition: all 0.3s ease-in;
+			transition: all 0.3s ease-in;
+		}
+
+		@media (max-width: 512px) {
+			body {
+				padding: 32px;
+				-webkit-transition: all 0.3s ease-in;
+				transition: all 0.3s ease-in;
+			}
+		}
+
+		@media (max-width: 360px) {
+			body {
+				padding: 16px;
+				-webkit-transition: all 0.3s ease-in;
+				transition: all 0.3s ease-in;
+			}
+		}
+
+		h1 {
+			text-align: center;
+			color: #000;
+			margin: 0 0 16px 0;
+		}
+
+		p {
+			text-align: center;
+			margin-top: 0;
+			margin-bottom: 24px;
+		}
+
+		.container {
+			max-width: 480px;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 64px;
+			box-shadow: 2px 2px 96px #111;
+			border-radius: 8px;
+			-webkit-transition: all 0.3s ease-in;
+			transition: all 0.3s ease-in;
+		}
+
+		@media (max-width: 512px) {
+			.container {
+				padding: 32px;
+				-webkit-transition: all 0.3s ease-in;
+				transition: all 0.3s ease-in;
+			}
+		}
+
+		@media (max-width: 360px) {
+			.container {
+				padding: 16px;
+				-webkit-transition: all 0.3s ease-in;
+				transition: all 0.3s ease-in;
+			}
+		}
+
+		label {
+			display: inline-block;
+			width: 25%;
+			min-width: 128px;
+			margin-bottom: 8px;
+			font-weight: bold;
+		}
+
+		input,
+		select {
+			display: inline-block;
+			background-color: #fff;
+			color: #888;
+			border: 2px solid #888;
+			border-radius: 2px;
+			height: 56px;
+			width: 100%;
+			font-size: 24px;
+			padding: 0 16px;
+			margin-bottom: 24px;
+		}
+
+		input:focus,
+		select:focus {
+			background-color: #fff;
+			color: #00bb8c;
+			border-color: #002d3f;
+			outline: 0;
+		}
+
+		input[type=number]::-webkit-inner-spin-button,
+		input[type=number]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		.payment {
+			color: #000;
+			font-size: 48px;
+			text-align: center;
+			font-weight: bold;
+			-webkit-transition: all 0.3s ease-in;
+			transition: all 0.3s ease-in;
+		}
+
+		@media (max-width: 512px) {
+			.payment {
+				font-size: 40px;
+				-webkit-transition: all 0.3s ease-in;
+				transition: all 0.3s ease-in;
+			}
+		}
+
+		@media (max-width: 400px) {
+			.payment {
+				font-size: 32px;
+				-webkit-transition: all 0.3s ease-in;
+				transition: all 0.3s ease-in;
+			}
+		}
+		 .error p, .error span{
+			 color: red;
+		 }
+		@media (max-height: 750px) {
+			body {
+				height: 100%;
+			}
+		}
+	</style>
+	<div id="calculator">
+
+		<div class="container">
+			<form action="#"  >
+				<h1>Calculadora</h1>
+				<p>Média Final</p>
+
+				<div v-bind:class="{ error: !isAlunoAprovado } ">
+					<p >{{media}}</p>
+					<span v-if="!isAlunoAprovado && isPreenchido">{{aluno}} Média não alcançada!</span>
+				</div>
+				
+                <label >Aluno</label>
+                <input type="text" name="aluno" class="currency" v-model="aluno" />
+
+                <label >Nota 1</label>
+                <input type="number" name="nota1" class="currency" v-model.number="nota1" />
+
+                <label >Nota 2</label>
+				<input type="number" name="nota2" class="currency" v-model.number="nota2" />
+
+                <!-- <button type="submit" class="btn btn-primary" >
+                    Adicionar Aluno
+                </button> -->
+
+			</form>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script>
+		var calculator = new Vue({
+			el: '#calculator',
+			data: {
+                aluno:"",
+                nota1:null,
+                nota2:null,
+
+			},
+			computed: {
+				isPreenchido(){
+					return this.aluno != '' && this.nota1 != null && this.nota2 != null;
+				},
+		
+				isAlunoAprovado(){
+
+									
+				return (this.nota1 * 0.25 + this.nota2 * 0.25 + this.media * 0.5 ) >= 6.2
+
+				},
+				media(){
+                    
+					return (this.nota1 + this.nota2) / 2;
+				 
+				 }
+				
+            },
+            
+
+		});
+
+	</script>
+
+</body>
+
+</html>
